@@ -7,8 +7,8 @@
  *      Author: SUAT-ARGE
  */
 #define CLEARDISPLAY 		0x01
-#define RETURNHOME 		0x02
-#define ENTRYMODE 		0x04
+#define RETURNHOME 			0x02
+#define ENTRYMODE 			0x04
 #define DISPLAYSETTING		0x08
 #define CURSORSHIFT 		0x10
 #define FUNCTIONSET 		0x20
@@ -25,9 +25,9 @@
 #define FUNCTIONSET_F		0x04
 #define FUNCTIONSET_N		0x08
 #define FUNCTIONSET_DL		0x10
-#define RSENABLE		0x01
-#define ENENABLE		0x04
-#define BGLIGHT			0x08
+#define RSENABLE			0x01
+#define ENENABLE			0x04
+#define BGLIGHT				0x08
 static I2C_HandleTypeDef *I2CHandler;
 uint8_t ADDRESS;
 
@@ -40,11 +40,11 @@ void mylcdi2c_init(I2C_HandleTypeDef *i2c, uint8_t address) {
 	mylcdi2c_command(0x20);
 	HAL_Delay(1);
 	mylcdi2c_command(20);
-	HAL_Delay(1);
+	HAL_Delay(2);
 
-	mylcdi2c_command(FUNCTIONSET | FUNCTIONSET_N);
+	mylcdi2c_command((FUNCTIONSET | FUNCTIONSET_N) << 4);
 	mylcdi2c_command(
-	DISPLAYSETTING | DISPLAYSETTING_D);
+	(DISPLAYSETTING | DISPLAYSETTING_D) << 4);
 
 	mylcdi2c_command(CLEARDISPLAY);
 	HAL_Delay(1);
@@ -79,15 +79,15 @@ void mylcdi2c_print(char *str) {
 void mylcdi2c_setCursor(uint8_t row, uint8_t column) {
 	uint8_t maskData = column;
 	if (row == 0) {
-		maskData |= 0x08;
-		mylcdi2c_command(maskData);
+		maskData |= 0x80;
 	}
 	if (row == 1) {
-		maskData |= 0x0C;
-		mylcdi2c_command(maskData);
+		maskData |= 0xC;
 	}
+	mylcdi2c_command(maskData << 4);
 }
 void mylcdi2c_clear() {
-	mylcdi2c_command(CLEARDISPLAY);
+	mylcdi2c_command(CLEARDISPLAY );
+	HAL_Delay(2);
 
 }
