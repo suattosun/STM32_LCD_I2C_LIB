@@ -42,9 +42,9 @@ void mylcdi2c_init(I2C_HandleTypeDef *i2c, uint8_t address) {
 	mylcdi2c_command(20);
 	HAL_Delay(2);
 
-	mylcdi2c_command((FUNCTIONSET | FUNCTIONSET_N) << 4);
+	mylcdi2c_command((FUNCTIONSET | FUNCTIONSET_N) );
 	mylcdi2c_command(
-	(DISPLAYSETTING | DISPLAYSETTING_D) << 4);
+	(DISPLAYSETTING | DISPLAYSETTING_D) );
 
 	mylcdi2c_command(CLEARDISPLAY);
 	HAL_Delay(1);
