@@ -7,8 +7,8 @@
  *      Author: SUAT-ARGE
  */
 #define CLEARDISPLAY 		0x01
-#define RETURNHOME 			0x02
-#define ENTRYMODE 			0x04
+#define RETURNHOME 		0x02
+#define ENTRYMODE 		0x04
 #define DISPLAYSETTING		0x08
 #define CURSORSHIFT 		0x10
 #define FUNCTIONSET 		0x20
@@ -25,9 +25,9 @@
 #define FUNCTIONSET_F		0x04
 #define FUNCTIONSET_N		0x08
 #define FUNCTIONSET_DL		0x10
-#define RSENABLE			0x01
-#define ENENABLE			0x04
-#define BGLIGHT				0x08
+#define RSENABLE		0x01
+#define ENENABLE		0x04
+#define BGLIGHT			0x08
 static I2C_HandleTypeDef *I2CHandler;
 uint8_t ADDRESS;
 
